@@ -1,16 +1,12 @@
 require "flutterby/coffeescript/version"
+require "coffee-script"
 
 module Flutterby
-  module Coffeescript
-    # Your code goes here...
-  end
-
-  module Filters
-    puts "extending!"
-    def self.process_coffee(input, node)
-      "moo"
+  module CoffeeScriptPlugin
+    def process_coffee(input, node)
+      ::CoffeeScript.compile(input)
     end
   end
 end
 
-puts "hi from flutterby/coffeescript"
+Flutterby::Filters.extend(Flutterby::CoffeeScriptPlugin)
