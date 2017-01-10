@@ -1,12 +1,6 @@
 require "flutterby/coffeescript/version"
 require "coffee-script"
 
-module Flutterby
-  module CoffeeScriptPlugin
-    def process_coffee!(node)
-      node.body = ::CoffeeScript.compile(node.body)
-    end
-  end
+Flutterby::Filters.add("coffee") do |node|
+  node.body = ::CoffeeScript.compile(node.body)
 end
-
-Flutterby::Filters.extend(Flutterby::CoffeeScriptPlugin)
